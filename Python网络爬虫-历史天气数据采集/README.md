@@ -4,7 +4,7 @@
 
 数据爬取的目标网站为[天气网](http://lishi.tianqi.com/)
 
-![目标网站](http://p3f66obex.bkt.clouddn.com/16-1.JPG)
+![目标网站](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlDsSaF8mI44TXw7rv4XltApKBQ6HlibdnqksiaOnJmOVhPcVFYTeAicOaA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## 编程实现
 
@@ -28,7 +28,7 @@ import json
 
 分析网页源代码可知，所有月份的URL在'tqtongji1'的div中。
 
-![get_url](http://p3f66obex.bkt.clouddn.com/16-2.JPG)
+![get_url](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlmMZ4TgDPbF2aplicEZHIdozjPFtQnNSpibYwQGXwNlgHtoMZohiblMOPw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 实现代码如下：
 
@@ -47,7 +47,7 @@ def get_url(request_url):
 
 获取到月份URL后，分析月份的页面源代码可知，历史天气数据在'tqtongji2'的div中。
 
-![month_data](http://p3f66obex.bkt.clouddn.com/16-3.JPG)
+![month_data](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlTcraIDibic4F0jGjlUj3Fq5v3ickDbJZuWCBoznoHfnFOICoOmOMunLdA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 源代码如下：
 
@@ -103,7 +103,11 @@ def get_year_weather(request_url, year_number): # year_number
 
 执行'result_df = get_year_weather(request_url, 2017)'，结果如下：
 
-![year_data](http://p3f66obex.bkt.clouddn.com/16-4.JPG)
+![year_data](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlzPMZVobq4Q3zAuKJ7icJMxu28oaEUw584wykXOcVUb78Ue0RdoYpibrQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+![](https://mmbiz.qpic.cn/mmbiz/Q7qJssj70ZbMWoyoAvhZCDgdaVXCyzvntslsLibMo3D1HaQlJ9lrXaej4dM01QAApFLDwk49PyqXkMP1XWbN9KA/640?wx_fmt=other&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+欢迎您扫一扫上面的二维码，关注我的微信公众号！
 
 
 

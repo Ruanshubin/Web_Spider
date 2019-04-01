@@ -4,17 +4,17 @@
 
 首先打开我浙的教务处网站首页，F12打开开发者工具，输入学号、用户名、验证码，点击登陆之后，通过开发者工具可以看到，登陆过程包含3次请求，其中2次为暂时重定向(请求返回值为302代表暂时重定向)。
 
-![登陆流程](http://p3f66obex.bkt.clouddn.com/14-1.JPG)
+![登陆流程](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlHjZwBNibicMTkDwNlciboibYoJyQibibY9Q3FWeCkUCoJiaLzTGTyQrBz3ibOg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ### 表单分析
 
 点击'Headers',如下图所示，易得第一次请求为表单提交(POST提交)。
 
-![第一次请求](http://p3f66obex.bkt.clouddn.com/14-2.JPG)
+![第一次请求](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMl0qrJTlLsVNibkTL14vh3teFn2lGdlyKial7lSjh4z88vpPXic23CtN9jA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 提交的表单如下：
 
-![提交的表单](http://p3f66obex.bkt.clouddn.com/14-3.JPG)
+![提交的表单](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMl8yjG8hq5kfZGHtm87A2sNVZCPLtDG3FpUvuQJEbCxhdfYkbwcCicboA/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 其中username, password, authcode分别为学号、密码和验证码，后面的lt, execution, _eventld为表单隐藏值，表单隐藏值是反爬虫的初级手段，那么如何获取表单隐藏值呢？
 
@@ -22,7 +22,7 @@
 
 表单隐藏值可以在实际登陆前，通过登陆界面表单填写部分的HTML代码获取，由下图所示：
 
-![表单隐藏值](http://p3f66obex.bkt.clouddn.com/14-4.JPG)
+![表单隐藏值](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlfibClygUoicuAF3zVaiamddtKpsmtepTGibXmiaP318vjtM63r99Sub3Gqg/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 可以看到，在登陆按钮的HTML源代码部分有3项隐藏的Input，观察name和value值，显然就是第一次请求POST的表单隐藏值。
 
@@ -32,15 +32,15 @@
 
 - 按照上述分析构造表单，模拟POST请求，返回的'Response Headers'的Location即为第二次请求的网址；
 
-![重定向网址1](http://p3f66obex.bkt.clouddn.com/14-5.JPG)
+![重定向网址1](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlFgv9YJ19ubWUXEBQibBDR0EDV1QxUgXNiactiban0KibsdjlwTDGWfgVqw/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - 同样的方式获取第三次请求的网址；
 
-![重定向网址2](http://p3f66obex.bkt.clouddn.com/14-8.JPG)
+![重定向网址2](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlxRYOyvjX8UeZUU6ZCWGetoKIRbrKUj4XxjCJl1MkUoapEiamS4jpGUQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 - 访问第3次请求的网址，即可实现登陆，返回登陆之后的HTML代码。
 
-![实现登陆](http://p3f66obex.bkt.clouddn.com/14-7.JPG)
+![实现登陆](https://mmbiz.qpic.cn/mmbiz_jpg/Q7qJssj70ZZvq21iavxPTVrhzPUoj7eMlJQ492L2UYqU4YmVPMaEbFqNxHQ3VKHxqQoQgGfqWaGA909277MekXQ/640?wx_fmt=jpeg&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ## 代码实现(Python2.7)
 
@@ -147,6 +147,11 @@ final_html = response_2.text # 登陆之后返回的html文档
 至此，大功告成，成功登陆教务处网站。
 
 下面就可以做一些有意思的事情了，比如利用flask封装一个API接口，进而做出课程表查询、考试提醒、成绩查询等各种功能型应用。
+
+![](https://mmbiz.qpic.cn/mmbiz/Q7qJssj70ZbMWoyoAvhZCDgdaVXCyzvntslsLibMo3D1HaQlJ9lrXaej4dM01QAApFLDwk49PyqXkMP1XWbN9KA/640?wx_fmt=other&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+欢迎您扫一扫上面的二维码，关注我的微信公众号！
+
 
 
 
